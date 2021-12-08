@@ -1,47 +1,54 @@
-import React, { useState } from 'react'
-import { serverTimestamp } from 'firebase/firestore'
+import React, { useState } from "react";
+import { serverTimestamp } from "firebase/firestore";
 
-const Submit = ({order, client,  table, category, addOrder, reset}) => {
+const Submit = ({ order, client, table, category, addOrder, reset }) => {
+  const initialValues = {
+    client: "",
+    table: "",
+    category: "",
+    order: [],
+  };
 
-const initialValues = {
-        client:'',
-        table: '',
-        category: '',
-        order: []
-}
-    let [values, ] = useState(initialValues)
+  let [status] = useState("En proceso");
 
-    values = {
-        client: client,
-        table: table,
-        category: category,
-        order: order,
-        createdTime: serverTimestamp()
-    }
-  
-    const resetPage = (e) => {
-        alert("¿Estás seguro?")
-        reset(e)
-    }
+  let [values] = useState(initialValues);
 
-    const resetComanda = (e) => {
-        handleSubmit(e)
-        reset(e)
-        }
+  values = {
+    client: client,
+    table: table,
+    category: category,
+    order: order,
+    createdTime: serverTimestamp(),
+    status: status,
+  };
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        //console.log('holi', e)
-        addOrder(values)
-    }
+  const resetPage = (e) => {
+    alert("¿Estás seguro?");
+    reset(e);
+  };
 
-    return (
-        <div id="btn-send">
-            <button className="btn-op cancel" type="submit" onClick={resetPage}>Cancelar</button>
-            <button className="btn-op confirm" type="submit" onClick={resetComanda} >Confirmar</button>
-        </div>
-    )
-}
+  const resetComanda = (e) => {
+    //console.log(e)
+    handleSubmit(e);
+    reset(e);
+  };
 
-export default Submit
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    //console.log('holi', e)
+    addOrder(values);
+  };
 
+  return (
+    <div id="btn-send">
+      <button className="btn-op cancel" type="submit" onClick={resetPage}>
+        Cancelar
+      </button>
+      <button className="btn-op confirm" type="submit" onClick={resetComanda}>
+        Confirmar
+      </button>
+    </div>
+  );
+};
+
+export default Submit;
