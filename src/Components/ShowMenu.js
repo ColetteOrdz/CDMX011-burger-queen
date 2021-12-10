@@ -1,11 +1,13 @@
-import React, { useState } from "react";
-import MenuBf from "./MenuBf";
-import MenuMeals from "./MenuMeal";
-import "./Styles/ShowMenu.css";
+/* eslint-disable react/prop-types */
+/* eslint-disable func-names */
+import React, { useState } from 'react';
+import MenuBf from './MenuBf';
+import MenuMeals from './MenuMeal';
 
-function ShowMenu({ addOrder }) {
-  //Se declara lo que quiero que cambie (categoría)
-  const [typeOfFood, setTypeOfFood] = useState("Desayuno");
+import './Styles/ShowMenu.css';
+
+const ShowMenu = function ({ addOrder }) {
+  const [typeOfFood, setTypeOfFood] = useState('Desayuno');
 
   const selectCategory = (e) => {
     setTypeOfFood(e.target.value);
@@ -30,7 +32,7 @@ function ShowMenu({ addOrder }) {
         />
       </div>
       <div id="menu">
-        {typeOfFood === "Desayuno" ? (
+        {typeOfFood === 'Desayuno' ? (
           <MenuBf addOrder={addOrder} category={typeOfFood} />
         ) : (
           <MenuMeals addOrder={addOrder} category={typeOfFood} />
@@ -38,6 +40,6 @@ function ShowMenu({ addOrder }) {
       </div>
     </div>
   );
-}
+};
 
 export default ShowMenu;
