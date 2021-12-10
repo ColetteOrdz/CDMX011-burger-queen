@@ -2,8 +2,12 @@
 /* eslint-disable no-alert */
 /* eslint-disable func-names */
 /* eslint-disable react/prop-types */
+
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-alert */
+/* eslint-disable func-names */
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
-import { serverTimestamp } from 'firebase/firestore';
 
 const Submit = function ({
   order, client, table, category, addOrder, reset,
@@ -24,7 +28,7 @@ const Submit = function ({
     table,
     category,
     order,
-    createdTime: serverTimestamp(),
+    createdTime: new Date(),
     status,
   };
 
